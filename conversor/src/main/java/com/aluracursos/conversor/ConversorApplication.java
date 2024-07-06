@@ -20,20 +20,28 @@ public class ConversorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ConversorApplication.class, args);
 
+		System.out.println("******************************************************");
+		System.out.println("*     Bienvenido a mi conversor de monedas           *");
+		System.out.println("******************************************************");
+
 		Scanner scanner = new Scanner(System.in);
 		boolean continueConversion = true;
 
 		Set<String> availableCurrencies = fetchAvailableCurrencies();
 
 		while (continueConversion) {
-			System.out.print("Cantidad: ");
+			System.out.print("-Cantidad que desea convertir: ");
 			double amount = scanner.nextDouble();
+			System.out.println("------------------------------------------------------");
 
-			System.out.print("Moneda actual: ");
+			System.out.print("- Divisa actual: ");
 			String baseCurrency = scanner.next().toUpperCase();
+			System.out.println("------------------------------------------------------");
 
-			System.out.print("Moneda de cambio: ");
+			System.out.print("- Divisa de cambio: ");
 			String targetCurrency = scanner.next().toUpperCase();
+			System.out.println("------------------------------------------------------");
+
 
 			try {
 				validateCurrency(availableCurrencies, baseCurrency);
@@ -43,12 +51,13 @@ public class ConversorApplication {
 				System.out.printf("%.2f %s es equivalente a %.2f %s%n", amount, baseCurrency, convertedAmount, targetCurrency);
 			} catch (IllegalArgumentException ex) {
 				System.out.println("Error: " + ex.getMessage());
-				System.out.println("Monedas disponibles: " + availableCurrencies);
+				System.out.println("Divisas disponibles: " + availableCurrencies);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				System.out.println("Error: " + ex.getMessage());
 			}
 
+			System.out.println("*******************************************");
 			System.out.print("¿Deseas realizar otra conversión? (si/no): ");
 			String response = scanner.next().toLowerCase();
 			if (!response.equals("si")) {
@@ -117,10 +126,11 @@ public class ConversorApplication {
 
 	private static void validateCurrency(Set<String> availableCurrencies, String currency) {
 		if (!availableCurrencies.contains(currency)) {
-			throw new IllegalArgumentException("Moneda no válida: " + currency);
+			throw new IllegalArgumentException("Divisa no válida: " + currency);
 		}
 	}
 }
+
 
 
 
