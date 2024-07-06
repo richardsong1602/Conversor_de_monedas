@@ -21,7 +21,7 @@ public class ConversorApplication {
 		SpringApplication.run(ConversorApplication.class, args);
 
 		System.out.println("******************************************************");
-		System.out.println("*     Bienvenido a mi conversor de monedas           *");
+		System.out.println("*     Bienvenido a mi conversor de divisas           *");
 		System.out.println("******************************************************");
 
 		Scanner scanner = new Scanner(System.in);
